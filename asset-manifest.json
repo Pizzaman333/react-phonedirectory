@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-phonedirectory/static/css/main.092f2ec0.css",
+    "main.js": "/react-phonedirectory/static/js/main.c04870b6.js",
+    "index.html": "/react-phonedirectory/index.html",
+    "main.092f2ec0.css.map": "/react-phonedirectory/static/css/main.092f2ec0.css.map",
+    "main.c04870b6.js.map": "/react-phonedirectory/static/js/main.c04870b6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.092f2ec0.css",
+    "static/js/main.c04870b6.js"
+  ]
+}
