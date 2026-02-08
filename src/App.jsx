@@ -1,7 +1,4 @@
 //----------------V3-------------------------
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { selectContacts } from "./redux/contactsSlice";
 import AddContactForm from "./Components/AddContactForm/AddContactForm";
 import ContactList from "./Components/ContactList/ContactList";
 import Filter from "./Components/Filter/Filter";
@@ -9,12 +6,6 @@ import Notification from "./Components/Notification/Notification";
 import styles from "./App.module.scss";
 
 const App = () => {
-  const contacts = useSelector(selectContacts);
-
-  useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]);
-
   return (
     <div className={styles.appContainer}>
       <Notification />
