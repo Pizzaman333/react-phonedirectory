@@ -1,14 +1,19 @@
 // -------------------------------------------------------- V3 ------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";  
-import { addContact, selectContacts } from "../../redux/contactsSlice"; 
-import { showNotification } from "../../redux/notificationSlice"; 
+//  RT
+// import { addContact, selectContacts } from "../../redux/contactsSlice"; 
+// import { showNotification } from "../../redux/notificationSlice"; 
+import { addContact } from "../../redux/contacts/contacts-actions"; 
+import { showNotification } from "../../redux/notification/notification-reducer";
+
 import { nanoid } from "nanoid";
 import styles from "./AddContactForm.module.scss";
 
 const AddContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  // const contacts = useSelector(selectContacts);
+  const contacts = useSelector((state) => state.contacts.items);
 
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
