@@ -1,26 +1,32 @@
-// classik redux
-import { createStore, combineReducers } from "redux";
-import { devToolsEnhancer } from "@redux-devtools/extension";
+import { createStore, combineReducers } from 'redux';
+import { contactsReducer } from './contacts/reducer';
+import { filterReducer } from './filter/reducer';
 
-import contactsReducer from "./contacts/contacts-reducer";
-import filterReducer from "./filter/filter-reducer"; 
-import notificationReducer from "./notification/notification-reducer"; 
+const defaultContacts = [
+  { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+  { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+  { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+  { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+];
+
+const persistedContacts = localStorage.getItem('contacts');
+const initialContacts = persistedContacts ? JSON.parse(persistedContacts) : defaultContacts;
+
+const preloadedState = {
+  contacts: { items: initialContacts },
+  filter: '',
+};
 
 const rootReducer = combineReducers({
   contacts: contactsReducer,
   filter: filterReducer,
-  notification: notificationReducer,  
 });
 
-export const store = createStore(
-  rootReducer, 
-  devToolsEnhancer() 
-);
+export const store = createStore(rootReducer, preloadedState);
 
-// every time the state changes
 store.subscribe(() => {
-  const state = store.getState();
-  localStorage.setItem("contacts", JSON.stringify(state.contacts.items));
+  const { contacts } = store.getState();
+  localStorage.setItem('contacts', JSON.stringify(contacts.items));
 });
 
 // using Redux Toolkit

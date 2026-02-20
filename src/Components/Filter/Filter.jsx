@@ -1,18 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
-// import { setFilter, selectFilter } from "../../redux/filterSlice";
-import { setFilter } from "../../redux/filter/filter-reducer";
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setFilter } from '../../redux/filter/actions';
+import { getFilter } from '../../redux/filter/selectors';
 import styles from "./Filter.module.scss";
 
 const Filter = () => {
   const dispatch = useDispatch();
-
-  const filter = useSelector((state) => state.filter);
-  // const filter = useSelector(selectFilter);
-
-  const handleChange = (e) => {
-    dispatch(setFilter(e.target.value));
-  };
+  const filter = useSelector(getFilter);
 
   return (
     <div className={styles.filterContainer}>
@@ -20,7 +13,7 @@ const Filter = () => {
       <input
         type="text"
         value={filter}
-        onChange={handleChange}
+        onChange={(e) => dispatch(setFilter(e.target.value))}
         placeholder="Search by name"
       />
     </div>

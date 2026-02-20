@@ -2,20 +2,16 @@
 import AddContactForm from "./Components/AddContactForm/AddContactForm";
 import ContactList from "./Components/ContactList/ContactList";
 import Filter from "./Components/Filter/Filter";
-import Notification from "./Components/Notification/Notification";
 import styles from "./App.module.scss";
 
-const App = () => {
-  return (
-    <div className={styles.appContainer}>
-      <Notification />
-      <h1>Phonebook</h1>
-      <AddContactForm /> 
-      <Filter />
-      <ContactList />
-    </div>
-  );
-};
+const App = () => (
+  <div className={styles.appContainer}>
+    <h1>Phonebook</h1>
+    <AddContactForm />
+    <Filter />
+    <ContactList />
+  </div>
+);
 
 export default App;
 

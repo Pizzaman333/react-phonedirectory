@@ -1,37 +1,22 @@
-import { useSelector, useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contacts/contacts-actions"; 
-import { showNotification } from "../../redux/notification/notification-reducer";
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contacts/actions';
+import { getFilteredContacts } from '../../redux/contacts/selectors';
 import Contact from "../Contact/Contact";
 import styles from "./ContactList.module.scss";
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  
-  const contacts = useSelector((state) => state.contacts.items); 
-  const filter = useSelector((state) => state.filter);
-
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-
-  const handleDelete = (id) => {
-    dispatch(deleteContact(id));
-
-     dispatch(showNotification({ 
-            message: "Contact deleted successfully!", 
-            type: "info" 
-        }));
-  };
+  const contacts = useSelector(getFilteredContacts);
 
   return (
     <ul className={styles.contactList}>
-      {filteredContacts.map((contact) => (
+      {contacts.map((contact) => (
         <Contact
-          key={contact.id}
-          id={contact.id}
           name={contact.name}
           tel={contact.number}
-          onDelete={handleDelete}
+          key={contact.id}
+          id={contact.id}
+          onDelete={() => dispatch(deleteContact(contact.id))}
         />
       ))}
     </ul>
